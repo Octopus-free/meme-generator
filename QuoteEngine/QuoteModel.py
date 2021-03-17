@@ -22,5 +22,4 @@ class QuoteModel:
 
     def __repr__(self):
         """Representation for a QuoteModel object."""
-        return f'"{self.body_text}" - {self.author}'
-
+        return f'{self.body_text} - {self.author}'

@@ -1,6 +1,6 @@
 """A class to parsing files."""
 
-from .QuoteModel import QuoteModel
+from QuoteModel import QuoteModel
 from abc import ABC, abstractmethod
 from typing import List
 
@@ -18,7 +18,7 @@ class IngestorInterface(ABC):
     @classmethod
     def can_ingest(cls, path: str) -> bool:
         """Determine a file extension."""
-        file_extension = path.split('.')[-1]
+        file_extension = path.split('.')[-1].lower()
         return file_extension in cls.input_files_formats
 
     @classmethod
