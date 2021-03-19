@@ -14,7 +14,7 @@ class DocxIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse a text file."""
+        """Parse a docx file."""
         quote_objects = []
 
         try:

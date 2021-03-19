@@ -1,30 +1,35 @@
-"""Ingest text files using the native file library."""
+"""Ingest pdf files using the native file library."""
 
 from QuoteModel import QuoteModel
 from IngestorInterface import IngestorInterface
 from typing import List
 from InvalidFileExtension import InvalidFileExtension
+from subprocess import call
 
 
-class TextIngestor(IngestorInterface):
-    """Class to parse txt files."""
+class PDFIngestor(IngestorInterface):
+    """Class to parse pdf files."""
 
-    input_files_formats = ['txt']
+    input_files_formats = ['pdf']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse a text file."""
+        """Parse a pdf file."""
         quote_objects = []
 
         try:
             is_file_exist = open(path)
             if cls.can_ingest(path):
 
-                with open(path, 'r') as txt_file_to_read:
+                txt_from_pdf = 'text.txt'
+                pdf_load_to_txt = call([
+                    'pdftotext', '-simple', path, txt_from_pdf
+                ])
+
+                with open(txt_from_pdf, 'r') as txt_file_to_read:
                     txt_file = txt_file_to_read.readlines()
 
                     for each_row in txt_file:
-                        print(each_row)
                         if each_row not in ('\n', '\x0c'):
                             body_text, author = each_row.split(' - ')
                             quote_objects.append(
@@ -33,7 +38,7 @@ class TextIngestor(IngestorInterface):
                         else:
                             pass
             else:
-                raise InvalidFileExtension('The file extension is not txt')
+                raise InvalidFileExtension('The file extension is not docx')
 
         except FileNotFoundError:
             print('The file is not found')
