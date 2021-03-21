@@ -1,3 +1,5 @@
+"""Flask application."""
+
 import random
 import os
 import requests
@@ -10,8 +12,7 @@ meme = MemeGenerator('./static')
 
 
 def setup():
-    """ Load all resources """
-
+    """Load all resources."""
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
                    './_data/DogQuotes/DogQuotesPDF.pdf',
@@ -34,7 +35,7 @@ quotes, imgs = setup()
 
 @app.route('/')
 def meme_rand():
-    """ Generate a random meme """
+    """Generate a random meme."""
     img = random.choice(imgs)
     quote = random.choice(quotes)
     path = meme.make_meme(img, quote.body_text, quote.author)
@@ -43,13 +44,13 @@ def meme_rand():
 
 @app.route('/create', methods=['GET'])
 def meme_form():
-    """ User input for meme information """
+    """User input for meme information."""
     return render_template('meme_form.html')
 
 
 @app.route('/create', methods=['POST'])
 def meme_post():
-    """ Create a user defined meme """
+    """Create a user defined meme."""
     image_url = request.form['image_url']
     text_body = QuoteModel(request.form['body'], request.form['author'])
     response = requests.get(image_url)
