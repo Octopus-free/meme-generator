@@ -1,6 +1,6 @@
 """A class to parsing files."""
 
-from QuoteModel import QuoteModel
+from .QuoteModel import QuoteModel
 from abc import ABC, abstractmethod
 from typing import List
 

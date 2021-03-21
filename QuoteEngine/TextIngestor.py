@@ -1,9 +1,9 @@
 """Ingest text files using the native file library."""
 
-from QuoteModel import QuoteModel
-from IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
 from typing import List
-from InvalidFileExtension import InvalidFileExtension
+from .InvalidFileExtension import InvalidFileExtension
 
 
 class TextIngestor(IngestorInterface):
