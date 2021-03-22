@@ -36,7 +36,7 @@ def generate_meme(path=None, body=None, author=None):
         quote = QuoteModel(body, author)
 
     meme = MemeGenerator('./tmp')
-    path = meme.make_meme(img, quote.body, quote.author)
+    path = meme.make_meme(img, quote.body_text, quote.author)
     return path
 
 
