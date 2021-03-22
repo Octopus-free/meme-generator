@@ -57,11 +57,11 @@ def meme_post():
     path_temp = './temp/image_temp.png'
 
     # write a temp image to a disk
-    with open(path_temp, 'w') as write_temp_image:
+    with open(path_temp, 'wb') as write_temp_image:
         write_temp_image.write(response.content)
 
     # memo generation
-    path = meme.make_meme(path_temp, text_body.body, text_body.author)
+    path = meme.make_meme(path_temp, text_body.body_text, text_body.author)
 
     # remove a temp image
     os.remove(path_temp)

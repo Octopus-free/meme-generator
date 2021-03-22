@@ -1,6 +1,7 @@
 """Crop an image, add a text and save it."""
 
 import os
+from time import time
 from PIL import Image, ImageDraw, ImageFont
 from random import randint
 
@@ -21,7 +22,7 @@ class MemeGenerator:
 
         # transform the image parameters
         transform_width = min(width, 500)
-        transform_ratio = transform_width/float(input_image.size[0])
+        transform_ratio = transform_width / float(input_image.size[0])
         transform_height = int(transform_ratio * float(input_image.size[1]))
 
         # resize an input image
@@ -45,7 +46,7 @@ class MemeGenerator:
 
         # write the image with the text do a disk
         out_path = os.path.join(self.output_dir,
-                           f'{text_body} on an image.png')
+                                f'image was created at {time()}.png')
 
         resized_image.save(out_path)
 
